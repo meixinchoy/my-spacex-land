@@ -2,9 +2,9 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
 export default function Launches() {
-  const router= useRouter();
+  const router = useRouter();
 
-  useEffect(()=>{
+  useEffect(() => {
     router.push("/");
   })
 

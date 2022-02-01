@@ -6,26 +6,28 @@ import Image from 'next/image'
 import styles from '../../styles/Home.module.css'
 import { useState, useEffect } from 'react';
 
-const launchDetails =()=>{
-    const [launch, setLaunch]=useState("");
-    const router=useRouter();
+const launchDetails = () => {
+  const [launch, setLaunch] = useState("");
+  const [title, setTitle] = useState("Loading...");
+  const router = useRouter();
 
-    useEffect(() => {
-        const launchId = router.query.id;
-        if (launchId !== 'new') {
-            getLaunch(launchId);
-        }
-      }, [router.query.id])
+  useEffect(() => {
+    const launchId = router.query.id;
+    if (launchId && launchId !== 'new') {
+      setTitle(`SpaceX Launch #${launchId}`);
+      getLaunch(launchId);
+    }
+  }, [router.query.id])
 
-    const getLaunch= async (launchID)=> {
-        const client = new ApolloClient({
-          uri: 'https://api.spacex.land/graphql/',
-          cache: new InMemoryCache()
-        });
+  const getLaunch = async (launchID) => {
+    const client = new ApolloClient({
+      uri: 'https://api.spacex.land/graphql/',
+      cache: new InMemoryCache()
+    });
 
-        try{
-        const {data}= await client.query({
-            query:gql`
+    try {
+      const { data } = await client.query({
+        query: gql`
             query getLaunch($id: ID!) {
                 launch(id: $id) {
                   id
@@ -46,35 +48,35 @@ const launchDetails =()=>{
                   }
                 }
               }`,
-            variables: { "id": launchID },
-            fetchPolicy: 'no-cache'
-            
-        })
-      
-        if(data.launch){
-            setLaunch(JSON.stringify(data.launch))
-        }
-        } catch (e) {
-        // catch any errors from Apollo Error.
-        console.log(e);
+        variables: { "id": launchID },
+        fetchPolicy: 'no-cache'
+
+      })
+
+      if (data.launch) {
+        setLaunch(JSON.stringify(data.launch))
       }
- 
+    } catch (e) {
+      // catch any errors from Apollo Error.
+      console.log(e);
     }
 
-    return(
-        <div>
-          <Head>
-            <title>SpaceX Land</title>
-            <meta name="description" content="SpaceX Launches" />
-            <link rel="icon" href="/favicon.ico" />
-          </Head>
+  }
 
-          <main className={styles.main}>
-            <h2>hi</h2>
-            <p>{launch}</p>
-          </main>
-        </div>
-    );
+  return (
+    <div>
+      <Head>
+        <title>{title}</title>
+        <meta name="description" content="SpaceX Launches" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <main className={styles.main}>
+        <h2>hi</h2>
+        <p>{launch}</p>
+      </main>
+    </div>
+  );
 }
 
 export default launchDetails;
