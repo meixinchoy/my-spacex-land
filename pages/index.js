@@ -68,19 +68,20 @@ export async function getStaticProps() {
           }
         }`
     });
+
+    return {
+      props: {
+        launches: data.launchesPast,
+        error: false
+      }
+    }
+    
   }catch(e){
     return {
       props: {
         launches: [],
         error: true
       }
-    }
-  }
-
-  return {
-    props: {
-      launches: data.launchesPast,
-      error: false
     }
   }
 }
