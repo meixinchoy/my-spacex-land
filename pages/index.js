@@ -18,11 +18,10 @@ export default function Home({launches, error}) {
         <h1 className={styles.title}>
           Welcome to <a href="https://api.spacex.land/graphql/">SpaceX Land!</a>
         </h1>
-{/* 
+
         <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p> */}
+          Check out our 20 most recent launches: 
+        </p>
 
         <div className={styles.grid}>
         {launches.map(launch => 
@@ -75,7 +74,7 @@ export async function getStaticProps() {
         error: false
       }
     }
-    
+
   }catch(e){
     return {
       props: {
