@@ -1,10 +1,11 @@
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
+import { useState, useEffect } from 'react';
+import Link from 'next/link'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
-export default function Home({launches}) {
-  console.log('launches', launches);
+export default function Home({launches, error}) {
   return (
     <div className={styles.container}>
       <Head>
@@ -17,21 +18,20 @@ export default function Home({launches}) {
         <h1 className={styles.title}>
           Welcome to <a href="https://api.spacex.land/graphql/">SpaceX Land!</a>
         </h1>
-
+{/* 
         <p className={styles.description}>
           Get started by editing{' '}
           <code className={styles.code}>pages/index.js</code>
-        </p>
+        </p> */}
 
         <div className={styles.grid}>
-        {launches.map(launch => {
-          return (
-            <a key={launch.id} href={launch.links.video_link} className={styles.card}>
-              <h3>{ launch.mission_name }</h3>
-              <p><strong>Launch Date:</strong> { new Date(launch.launch_date_local).toLocaleDateString("en-US") }</p>
-            </a>
-          );
-        })}
+        {launches.map(launch => 
+            <Link key={launch.id} href={"/launches/"+launch.id}>
+              <div className={styles.card}>
+                <h3>{ launch.mission_name }</h3>
+                <p><strong>Launch Date:</strong> { new Date(launch.launch_date_local).toLocaleDateString("en-US") }</p>
+              </div>
+            </Link>)}
         </div>
       </main>
 
@@ -57,32 +57,30 @@ export async function getStaticProps() {
     cache: new InMemoryCache()
   });
 
-  const { data } = await client.query({
-    query: gql`
-      query GetLaunches {
-        launchesPast(limit: 10) {
-          id
-          mission_name
-          launch_date_local
-          launch_site {
-            site_name_long
+  try{
+    const { data } = await client.query({
+      query: gql`
+        query GetLaunches {
+          launchesPast(limit: 20, sort: "") {
+            mission_name
+            launch_date_local
+            id
           }
-          links {
-            article_link
-            video_link
-            mission_patch
-          }
-          rocket {
-            rocket_name
-          }
-        }
+        }`
+    });
+  }catch(e){
+    return {
+      props: {
+        launches: [],
+        error: true
       }
-    `
-  });
+    }
+  }
 
   return {
     props: {
-      launches: data.launchesPast
+      launches: data.launchesPast,
+      error: false
     }
   }
 }
