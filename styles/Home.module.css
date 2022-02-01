@@ -36,7 +36,8 @@
 .title a:hover,
 .title a:focus,
 .title a:active {
-  text-decoration: underline;
+  text-decoration: none;
+  color: blue;
 }
 
 .title {
@@ -56,15 +57,6 @@
   font-size: 1.5rem;
 }
 
-.code {
-  background: #fafafa;
-  border-radius: 5px;
-  padding: 0.75rem;
-  font-size: 1.1rem;
-  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-    Bitstream Vera Sans Mono, Courier New, monospace;
-}
-
 .grid {
   display: flex;
   align-items: center;
@@ -74,6 +66,7 @@
 }
 
 .card {
+  width: 300px;
   margin: 1rem;
   padding: 1.5rem;
   text-align: left;
@@ -82,7 +75,6 @@
   border: 1px solid #eaeaea;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
-  max-width: 300px;
 }
 
 .card:hover,
@@ -112,5 +104,17 @@
   .grid {
     width: 100%;
     flex-direction: column;
+  }
+}
+
+@media (max-width: 370px) {
+  .container {
+    padding: 0 .5rem;
+  }
+
+  .card{
+    width: 220px;
+    margin: .5rem;
+    padding: .5rem;
   }
 }
