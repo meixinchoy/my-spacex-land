@@ -63,6 +63,14 @@ const launchDetails = () => {
 
   }
 
+  if (launch) {
+    const dataObj = JSON.parse(launch);
+    console.log(dataObj)
+
+    // const launchUI= <launchUI >;
+  }
+
+
   return (
     <div>
       <Head>
@@ -74,6 +82,7 @@ const launchDetails = () => {
       <main className={styles.main}>
         <h2>hi</h2>
         <p>{launch}</p>
+        {/* {launchUI} */}
       </main>
     </div>
   );
