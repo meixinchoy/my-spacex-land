@@ -5,8 +5,9 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../../styles/Home.module.css'
 import { useState, useEffect } from 'react';
+import LaunchDetails from '../../components/LaunchDetails';
 
-const launchDetails = () => {
+const launch = () => {
   const [launch, setLaunch] = useState("");
   const [title, setTitle] = useState("Loading...");
   const router = useRouter();
@@ -37,8 +38,17 @@ const launchDetails = () => {
                     rocket_type
                   }
                   links {
-                    article_link
+                    reddit_media
+                    video_link
                     flickr_images
+                    article_link
+                    mission_patch
+                    mission_patch_small
+                    presskit
+                    reddit_campaign
+                    reddit_launch
+                    reddit_recovery
+                    wikipedia
                   }
                   launch_date_local
                   launch_success
@@ -63,14 +73,6 @@ const launchDetails = () => {
 
   }
 
-  if (launch) {
-    const dataObj = JSON.parse(launch);
-    console.log(dataObj)
-
-    // const launchUI= <launchUI >;
-  }
-
-
   return (
     <div>
       <Head>
@@ -81,11 +83,10 @@ const launchDetails = () => {
 
       <main className={styles.main}>
         <h2>hi</h2>
-        <p>{launch}</p>
-        {/* {launchUI} */}
+        <LaunchDetails data={launch} />
       </main>
     </div>
   );
 }
 
-export default launchDetails;
+export default launch;
