@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
-export default function Home({launches, error}) {
+export default function Home({ launches, error }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -15,19 +15,19 @@ export default function Home({launches, error}) {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://api.spacex.land/graphql/">SpaceX Land!</a>
+          Welcome to <a href="https://api.spacex.land/graphql/" target="_blank">SpaceX Land!</a>
         </h1>
 
         <p className={styles.description}>
-          Check out our 20 most recent launches: 
+          Check out our 20 most recent launches:
         </p>
 
         <div className={styles.grid}>
-        {launches.map(launch => 
-            <Link key={launch.id} href={"/launches/"+launch.id}>
+          {launches.map(launch =>
+            <Link key={launch.id} href={"/launches/" + launch.id}>
               <div className={styles.card}>
-                <h3>{ launch.mission_name }</h3>
-                <p><strong>Launch Date:</strong> { new Date(launch.launch_date_local).toLocaleDateString("en-US") }</p>
+                <h3>{launch.mission_name}</h3>
+                <p><strong>Launch Date:</strong> {new Date(launch.launch_date_local).toLocaleDateString("en-US")}</p>
               </div>
             </Link>)}
         </div>
@@ -42,7 +42,7 @@ export async function getStaticProps() {
     cache: new InMemoryCache()
   });
 
-  try{
+  try {
     const { data } = await client.query({
       query: gql`
         query GetLaunches {
@@ -61,7 +61,7 @@ export async function getStaticProps() {
       }
     }
 
-  }catch(e){
+  } catch (e) {
     return {
       props: {
         launches: [],

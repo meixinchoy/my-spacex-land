@@ -8,15 +8,21 @@ const LaunchDetails = ({ data }) => {
     const [missionPatch, setMP] = useState(null);
     const [video, setVideo] = useState(null);
     const [images, setImg] = useState(null);
+    const [title, setTitle] = useState(null);
+    const [launchDate, setLaunchDate] = useState(null);
+    const [launchSite, setLaunchSite] = useState("-");
+    const [launchStatus, setLaunchStatus] = useState("unsuccessful");
+    const [rocketName, setRocketName] = useState("-");
+    const [rocketType, setRocketType] = useState("-");
+    const [details, setDetails] = useState(null);
 
     const contentStyle = {
         height: '300px',
         width: '420px',
         objectFit: 'contain',
-        color: '#fff',
-        lineHeight: '160px',
-        textAlign: 'center',
         background: '#364d79',
+        maxWidth: '95vw', 
+        minWidth: '42vw',
     };
 
     useEffect(() => {
@@ -40,35 +46,54 @@ const LaunchDetails = ({ data }) => {
 
             if (dataObj.links.video_link) {
                 setVideo(
-                    <iframe width="560" height="315" src={"https://www.youtube.com/embed/" + dataObj.links.video_link.substr(17)} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                    <iframe width="420" height="300" src={"https://www.youtube.com/embed/" + dataObj.links.video_link.substr(17)} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                 )
             }
+
+            if (dataObj.launch_site && dataObj.launch_site.site_name) {
+                setLaunchSite(dataObj.launch_site.site_name);
+            }
+
+            if (dataObj.launch_success){
+                setLaunchStatus("Success");
+            }
+
+            if (dataObj.rocket) {
+                if (dataObj.rocket.rocket_name)
+                    setRocketName(dataObj.rocket.rocket_name);
+
+                if (dataObj.rocket.rocket_type)
+                    setRocketType(dataObj.rocket.rocket_type);
+            }
+
+            setDetails(dataObj.details);
+            setTitle(dataObj.mission_name);
+            setLaunchDate(new Date(dataObj.launch_date_local).toLocaleDateString("en-US"));
+
             console.log(dataObj)
         }
 
     }, [data])
 
-    return (<div style={{
-        display: 'block', maxWidth: '95vw', minWidth: '40vw', minHeight: '35vw', padding: 30
-    }}>
-
-        <Carousel autoplay class="carousel" style={{
-            width: 400, height: 350
-        }}>
-            {images}
-            {missionPatch}
-            {video}
+    return (
+        <div class="launchDetails">
+            <h1>{title}</h1>
             <div>
-                <h3 style={contentStyle}>2</h3>
+                <Carousel autoplay class="carousel" style={{
+                    width: 420, height: 300, minWidth: '42vw', minHeight: '30vw'
+                }}>
+                    {images}
+                    {missionPatch}
+                    {video}
+                </Carousel>
             </div>
-            <div>
-                <h3 style={contentStyle}>3</h3>
-            </div>
-            <div>
-                <h3 style={contentStyle}>4</h3>
-            </div>
-        </Carousel>
-    </div>
+            <h3>Launch date: {launchDate}</h3>
+            <h3>Launch site: {launchSite}</h3>
+            <h3>Launch status: {launchStatus}</h3>
+            <h3>Rocket name: {rocketName}</h3>
+            <h3>Rocket type: {rocketType}</h3>
+            <p class="wrapword">{details}</p>
+        </div>
     );
 }
 

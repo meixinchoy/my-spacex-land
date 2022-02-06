@@ -32,6 +32,7 @@ const launch = () => {
             query getLaunch($id: ID!) {
                 launch(id: $id) {
                   id
+                  mission_name
                   details
                   rocket {
                     rocket_name
@@ -82,7 +83,6 @@ const launch = () => {
       </Head>
 
       <main className={styles.main}>
-        <h2>hi</h2>
         <LaunchDetails data={launch} />
       </main>
     </div>
