@@ -1,0 +1,31 @@
+/* li.slick-active{
+    color:black !important;
+}
+
+.ant-carousel .slick-dots li button{
+    color: black !important;
+    background-color: black!important;
+} */
+
+.wrapword {
+    white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    white-space: pre-wrap;       /* css-3 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+    white-space: -webkit-pre-wrap; /* Newer versions of Chrome/Safari*/
+    word-break: break-all;
+    white-space: normal;
+}
+
+.ant-carousel .slick-dots li button {
+  width: 6px;
+  height: 6px;
+  border-radius: 100%;
+}
+.ant-carousel .slick-dots li.slick-active button {
+  width: 7px;
+  height: 7px;
+  border-radius: 100%;
+  background: red;
+}

@@ -18,11 +18,9 @@ const LaunchDetails = ({ data }) => {
 
     const contentStyle = {
         height: '300px',
-        width: '420px',
+        width: '500px',
         objectFit: 'contain',
-        background: '#364d79',
-        maxWidth: '95vw', 
-        minWidth: '42vw',
+        background: '#364d79'
     };
 
     useEffect(() => {
@@ -46,7 +44,7 @@ const LaunchDetails = ({ data }) => {
 
             if (dataObj.links.video_link) {
                 setVideo(
-                    <iframe width="420" height="300" src={"https://www.youtube.com/embed/" + dataObj.links.video_link.substr(17)} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                    <iframe height='300' width='500' src={"https://www.youtube.com/embed/" + dataObj.links.video_link.substr(17)} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                 )
             }
 
@@ -54,7 +52,7 @@ const LaunchDetails = ({ data }) => {
                 setLaunchSite(dataObj.launch_site.site_name);
             }
 
-            if (dataObj.launch_success){
+            if (dataObj.launch_success) {
                 setLaunchStatus("Success");
             }
 
@@ -78,21 +76,20 @@ const LaunchDetails = ({ data }) => {
     return (
         <div class="launchDetails">
             <h1>{title}</h1>
-            <div>
-                <Carousel autoplay class="carousel" style={{
-                    width: 420, height: 300, minWidth: '42vw', minHeight: '30vw'
-                }}>
-                    {images}
-                    {missionPatch}
-                    {video}
-                </Carousel>
-            </div>
+            <Carousel autoplay class="carousel" style={{
+                width: 500, height: 300, marginTop: 10, marginBottom: 15
+            }}>
+                {images}
+                {missionPatch}
+                {video}
+            </Carousel>
             <h3>Launch date: {launchDate}</h3>
             <h3>Launch site: {launchSite}</h3>
             <h3>Launch status: {launchStatus}</h3>
             <h3>Rocket name: {rocketName}</h3>
             <h3>Rocket type: {rocketType}</h3>
-            <p class="wrapword">{details}</p>
+            {details&&<h3>Additional Details:</h3>}
+            <p class="wrapword" style={{ width: 500 }}>{details}</p>
         </div>
     );
 }
