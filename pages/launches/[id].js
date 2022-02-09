@@ -7,7 +7,7 @@ import styles from '../../styles/Home.module.css'
 import { useState, useEffect } from 'react';
 import LaunchDetails from '../../components/LaunchDetails';
 
-const launch = () => {
+const Launch = () => {
   const [launch, setLaunch] = useState("");
   const [title, setTitle] = useState("Loading...");
   const router = useRouter();
@@ -89,4 +89,4 @@ const launch = () => {
   );
 }
 
-export default launch;
+export default Launch;

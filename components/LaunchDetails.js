@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { Carousel } from 'antd';
+import Image from 'next/image';
 import "antd/dist/antd.css";
 import "../styles/Components.module.css"
 
@@ -31,14 +32,14 @@ const LaunchDetails = ({ data }) => {
                 setImg(
                     dataObj.links.flickr_images.map((img) =>
                         <div key={img}>
-                            <img src={img} style={contentStyle}></img>
+                            <Image src={img} style={contentStyle}></Image>
                         </div>));
             }
 
             if (dataObj.links.mission_patch) {
                 setMP(
                     <div>
-                        <img src={dataObj.links.mission_patch} style={contentStyle}></img>
+                        <Image src={dataObj.links.mission_patch} style={contentStyle}></Image>
                     </div>);
             }
 
@@ -74,9 +75,9 @@ const LaunchDetails = ({ data }) => {
     }, [data])
 
     return (
-        <div class="launchDetails">
+        <div className="launchDetails">
             <h1>{title}</h1>
-            <Carousel autoplay class="carousel" style={{
+            <Carousel autoplay className="carousel" style={{
                 width: 500, height: 300, marginTop: 10, marginBottom: 15
             }}>
                 {images}
@@ -88,8 +89,8 @@ const LaunchDetails = ({ data }) => {
             <h3>Launch status: {launchStatus}</h3>
             <h3>Rocket name: {rocketName}</h3>
             <h3>Rocket type: {rocketType}</h3>
-            {details&&<h3>Additional Details:</h3>}
-            <p class="wrapword" style={{ width: 500 }}>{details}</p>
+            {details && <h3>Additional Details:</h3>}
+            <p className="wrapword" style={{ width: 500 }}>{details}</p>
         </div>
     );
 }

@@ -15,7 +15,7 @@ export default function Home({ launches, error }) {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://api.spacex.land/graphql/" target="_blank">SpaceX Land!</a>
+          Welcome to <a href="https://api.spacex.land/graphql/" target="_blank" rel="noreferrer">SpaceX Land!</a>
         </h1>
 
         <p className={styles.description}>
@@ -25,7 +25,7 @@ export default function Home({ launches, error }) {
         <div className={styles.grid}>
           {launches.map(launch =>
             <Link key={launch.id} href={"/launches/" + launch.id} >
-              <div className={styles.card+" link"}>
+              <div className={styles.card + " link"}>
                 <h3>{launch.mission_name}</h3>
                 <p><strong>Launch Date:</strong> {new Date(launch.launch_date_local).toLocaleDateString("en-US")}</p>
               </div>
