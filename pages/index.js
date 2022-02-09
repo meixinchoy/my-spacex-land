@@ -24,8 +24,8 @@ export default function Home({ launches, error }) {
 
         <div className={styles.grid}>
           {launches.map(launch =>
-            <Link key={launch.id} href={"/launches/" + launch.id}>
-              <div className={styles.card}>
+            <Link key={launch.id} href={"/launches/" + launch.id} >
+              <div className={styles.card+" link"}>
                 <h3>{launch.mission_name}</h3>
                 <p><strong>Launch Date:</strong> {new Date(launch.launch_date_local).toLocaleDateString("en-US")}</p>
               </div>
