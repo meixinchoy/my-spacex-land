@@ -32,14 +32,14 @@ const LaunchDetails = ({ data }) => {
                 setImg(
                     dataObj.links.flickr_images.map((img) =>
                         <div key={img}>
-                            <Image src={img} style={contentStyle}></Image>
+                            <Image src={img} style={contentStyle} width={500} height={300}></Image>
                         </div>));
             }
 
             if (dataObj.links.mission_patch) {
                 setMP(
                     <div>
-                        <Image src={dataObj.links.mission_patch} style={contentStyle}></Image>
+                        <Image src={dataObj.links.mission_patch} style={contentStyle} width={500} height={300}></Image>
                     </div>);
             }
 
