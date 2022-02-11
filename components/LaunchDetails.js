@@ -14,13 +14,13 @@ const LaunchDetails = ({ data }) => {
     const [launchStatus, setLaunchStatus] = useState("unsuccessful");
     const [rocketName, setRocketName] = useState("-");
     const [rocketType, setRocketType] = useState("-");
-    const [details, setDetails] = useState("-");
+    const [details, setDetails] = useState(null);
 
-    const contentStyle = {
-        height: '300px',
-        width: '500px',
-        objectFit: 'contain',
-        background: '#364d79'
+    const dateOptions = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
     };
 
     useEffect(() => {
@@ -31,20 +31,20 @@ const LaunchDetails = ({ data }) => {
                 setImg(
                     dataObj.links.flickr_images.map((img) =>
                         <div key={img}>
-                            <Image src={img} style={contentStyle} width={500} height={300}></Image>
+                            <Image src={img} width={500} height={300}></Image>
                         </div>));
             }
 
             if (dataObj.links.mission_patch) {
                 setMP(
                     <div>
-                        <Image src={dataObj.links.mission_patch} style={contentStyle} width={500} height={300}></Image>
+                        <Image src={dataObj.links.mission_patch} width={500} height={300}></Image>
                     </div>);
             }
 
             if (dataObj.links.video_link) {
                 setVideo(
-                    <iframe height='300' width='500' src={"https://www.youtube.com/embed/" + dataObj.links.video_link.substr(17)} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                    <iframe height="300px" src={"https://www.youtube.com/embed/" + dataObj.links.video_link.substr(17)} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                 )
             }
 
@@ -66,7 +66,7 @@ const LaunchDetails = ({ data }) => {
 
             setDetails(dataObj.details);
             setTitle(dataObj.mission_name);
-            setLaunchDate(new Date(dataObj.launch_date_local).toLocaleDateString("en-US"));
+            setLaunchDate(new Date(dataObj.launch_date_local).toLocaleDateString("en-US", dateOptions));
 
             console.log(dataObj)
         }
@@ -77,7 +77,7 @@ const LaunchDetails = ({ data }) => {
         <div className="launchDetails">
             <h1>{title}</h1>
             <Carousel autoplay className="carousel" style={{
-                width: 500, height: 340
+                width: 500, height: 340, maxWidth: '90vw', maxHeight: '65vw'
             }}>
                 {images}
                 {missionPatch}
@@ -99,9 +99,11 @@ const LaunchDetails = ({ data }) => {
                 <Panel header="Rocket type" key="5">
                     <p>{rocketType}</p>
                 </Panel>
-                <Panel header="Additional Details" key="6">
-                    <p className='wrapword'>{details}</p>
-                </Panel>
+                {details &&
+                    <Panel header="Additional Details" key="6">
+                        <p className='wrapword'>{details}</p>
+                    </Panel>
+                }
             </Collapse>
         </div>
     );
