@@ -1,19 +1,20 @@
 
 import React, { useEffect, useState } from 'react';
-import { Carousel } from 'antd';
+import { Carousel, Collapse } from 'antd';
 import Image from 'next/image';
 
 const LaunchDetails = ({ data }) => {
+    const Panel = Collapse.Panel;
     const [missionPatch, setMP] = useState(null);
     const [video, setVideo] = useState(null);
     const [images, setImg] = useState(null);
     const [title, setTitle] = useState(null);
-    const [launchDate, setLaunchDate] = useState(null);
+    const [launchDate, setLaunchDate] = useState("-");
     const [launchSite, setLaunchSite] = useState("-");
     const [launchStatus, setLaunchStatus] = useState("unsuccessful");
     const [rocketName, setRocketName] = useState("-");
     const [rocketType, setRocketType] = useState("-");
-    const [details, setDetails] = useState(null);
+    const [details, setDetails] = useState("-");
 
     const contentStyle = {
         height: '300px',
@@ -82,13 +83,26 @@ const LaunchDetails = ({ data }) => {
                 {missionPatch}
                 {video}
             </Carousel>
-            <h3>Launch date: {launchDate}</h3>
-            <h3>Launch site: {launchSite}</h3>
-            <h3>Launch status: {launchStatus}</h3>
-            <h3>Rocket name: {rocketName}</h3>
-            <h3>Rocket type: {rocketType}</h3>
-            {details && <h3>Additional Details:</h3>}
-            <p className="wrapword" style={{ width: 500 }}>{details}</p>
+            <Collapse accordion>
+                <Panel header="Launch date" key="1">
+                    <p>{launchDate}</p>
+                </Panel>
+                <Panel header="Launch site" key="2">
+                    <p>{launchSite}</p>
+                </Panel>
+                <Panel header="Launch status" key="3">
+                    <p>{launchStatus}</p>
+                </Panel>
+                <Panel header="Rocket Name" key="4">
+                    <p>{rocketName}</p>
+                </Panel>
+                <Panel header="Rocket type" key="5">
+                    <p>{rocketType}</p>
+                </Panel>
+                <Panel header="Additional Details" key="6">
+                    <p className='wrapword'>{details}</p>
+                </Panel>
+            </Collapse>
         </div>
     );
 }
