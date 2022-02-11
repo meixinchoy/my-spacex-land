@@ -1,0 +1,26 @@
+@import '../common/styles/breakpoints.scss';
+@import '../common/styles/typography.scss';
+
+.ant-carousel{
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.ant-carousel .slick-dots li button {
+  height: 5px;
+  width: 13px;
+  border-radius: 20%;
+  background-color: $unactiveCarouselSlick;
+  opacity: 70%;
+}
+
+.ant-carousel .slick-dots li.slick-active button {
+  height: 6px;
+  width: 18px;
+  border-radius: 20%;
+  background: $activeCarouselSlick;
+}
+
+.ant-collapse{
+  width: 500px;
+}

@@ -2,32 +2,31 @@ import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import { useState, useEffect } from 'react';
 import Link from 'next/link'
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
 
 export default function Home({ launches, error }) {
   return (
-    <div className={styles.container}>
+    <div className="homeContainer">
       <Head>
         <title>SpaceX Land</title>
         <meta name="description" content="Recent SpaceX Launches" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
+      <main className="main">
+        <h1 className="title size-64">
           Welcome to <a href="https://api.spacex.land/graphql/" target="_blank" rel="noreferrer">SpaceX Land!</a>
         </h1>
 
-        <p className={styles.description}>
+        <p className="description size-24">
           Check out our 20 most recent launches:
         </p>
 
-        <div className={styles.grid}>
+        <div className="grid">
           {launches.map(launch =>
             <Link key={launch.id} href={"/launches/" + launch.id} >
-              <div className={styles.card + " link"}>
+              <div className={"card" + " link"}>
                 <h3>{launch.mission_name}</h3>
-                <p><strong>Launch Date:</strong> {new Date(launch.launch_date_local).toLocaleDateString("en-US")}</p>
+                <p className="size-18"><strong>Launch Date:</strong> {new Date(launch.launch_date_local).toLocaleDateString("en-US")}</p>
               </div>
             </Link>)}
         </div>

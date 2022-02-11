@@ -1,0 +1,74 @@
+@import '../../common/styles/breakpoints.scss';
+@import '../../common/styles/typography.scss';
+
+.homeContainer {
+  padding: 0 2rem;
+}
+.main {
+    min-height: 88vh;
+    padding: 4rem 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    margin: 0;
+}
+
+.description {
+    margin: 4rem 0;
+}
+
+.grid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 800px;
+}
+
+.card {
+    width: 300px;
+    margin: 1rem;
+    padding: 1.5rem;
+    border: 1.5px solid #ffffff;
+    background: $offwhite;
+    border-radius: 10px;
+    transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.card:hover,
+.card:focus,
+.card:active {
+border-color: blue;
+}
+
+.card h2 {
+    margin: 0 0 1rem 0;
+}
+
+.card p {
+    margin: 0;
+}
+
+@media (max-width: $sm) {
+  .homeContainer .grid {
+    width: 100%;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: $xs) {
+  .homeContainer {
+    padding: 0 .5rem;
+  }
+
+  .homeContainer .card{
+    width: 220px;
+    margin: .5rem;
+    padding: .5rem;
+  }
+}

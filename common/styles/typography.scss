@@ -1,0 +1,124 @@
+@import './breakpoints.scss';
+
+@font-face {
+  font-family: "Bitstream Vera Serif Bold";
+  src: url("https://mdn.mozillademos.org/files/2468/VeraSeBd.ttf");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bitstream Vera Serif Bold";
+  src: url("https://mdn.mozillademos.org/files/2468/VeraSeBd.ttf");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+* {
+  //font-family: "Bitstream Vera Serif Bold";
+  font-family: Arial, Helvetica, sans-serif;
+  color: #262626;
+}
+
+$blue:#0070f3;
+$darkerblue: #044da1;
+$offwhite: #ecececf8;
+$unactiveCarouselSlick: #666666;
+$activeCarouselSlick: #1d1d1d;
+
+label {
+  font-size: 16px;
+  color: #252525;
+}
+
+.blue {
+  color: #0070f3;
+}
+.gray {
+  color: #666666;
+}
+.gray2 {
+  color: #808080;
+}
+.bold {
+  font-weight: bold;
+}
+.normal {
+  font-weight: normal;
+}
+.size-12 {
+  font-size: 12px;
+}
+.size-24 {
+  font-size: 24px;
+}
+.size-18 {
+  font-size: 18px;
+}
+.size-16 {
+  font-size: 16px;
+}
+.size-14 {
+  font-size: 14px;
+}
+.size-32 {
+  font-size: 32px !important;
+}
+.size-64 {
+  font-size: 64px !important;
+}
+.right {
+  text-align: right;
+}
+.white {
+  color: white;
+}
+.underline {
+  text-decoration: underline;
+}
+.pointer {
+  cursor: pointer;
+}
+.italic {
+  font-style: italic;
+}
+.center {
+  text-align: center;
+}
+.uppercase {
+  text-transform: uppercase;
+}
+.link {
+  cursor: pointer;
+}
+h1{
+  text-align: center;
+}
+p{
+  text-align: justify;
+  line-height: 1.5;
+}
+a {
+  color: $blue !important;
+  text-decoration: none;
+  cursor:pointer;
+}
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none;
+  color: $darkerblue !important;
+}
+.wrapword {
+    white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    white-space: pre-wrap;       /* css-3 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+    white-space: -webkit-pre-wrap; /* Newer versions of Chrome/Safari*/
+    word-break: break-all;
+    white-space: normal;
+}
+
