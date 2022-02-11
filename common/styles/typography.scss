@@ -23,6 +23,8 @@
 }
 
 $blue:#0070f3;
+$darkerblue: #044da1;
+$offwhite: #ecececf8;
 
 label {
   font-size: 16px;
@@ -62,6 +64,9 @@ label {
 .size-32 {
   font-size: 32px !important;
 }
+.size-64 {
+  font-size: 64px !important;
+}
 .right {
   text-align: right;
 }
@@ -91,11 +96,18 @@ h1{
 }
 p{
   text-align: justify;
+  line-height: 1.5;
 }
 a {
-  color: inherit;
+  color: $blue !important;
   text-decoration: none;
   cursor:pointer;
+}
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none;
+  color: $darkerblue !important;
 }
 .wrapword {
     white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */

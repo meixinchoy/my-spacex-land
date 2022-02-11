@@ -13,11 +13,11 @@ export default function Home({ launches, error }) {
       </Head>
 
       <main className="main">
-        <h1 className="title">
+        <h1 className="title size-64">
           Welcome to <a href="https://api.spacex.land/graphql/" target="_blank" rel="noreferrer">SpaceX Land!</a>
         </h1>
 
-        <p className="description">
+        <p className="description size-24">
           Check out our 20 most recent launches:
         </p>
 
@@ -26,7 +26,7 @@ export default function Home({ launches, error }) {
             <Link key={launch.id} href={"/launches/" + launch.id} >
               <div className={"card" + " link"}>
                 <h3>{launch.mission_name}</h3>
-                <p><strong>Launch Date:</strong> {new Date(launch.launch_date_local).toLocaleDateString("en-US")}</p>
+                <p className="size-18"><strong>Launch Date:</strong> {new Date(launch.launch_date_local).toLocaleDateString("en-US")}</p>
               </div>
             </Link>)}
         </div>
