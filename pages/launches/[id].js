@@ -1,16 +1,18 @@
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import { useRouter } from 'next/router';
-import Link from 'next/link'
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../../styles/Home.module.css'
 import { useState, useEffect } from 'react';
 import LaunchDetails from '../../components/LaunchDetails';
+import { Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons'
 
 const Launch = () => {
   const [launch, setLaunch] = useState("");
   const [title, setTitle] = useState("Loading...");
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
+  const antIcon = <LoadingOutlined style={{ fontSize: 35 }} spin />;
 
   useEffect(() => {
     const launchId = router.query.id;
@@ -21,6 +23,7 @@ const Launch = () => {
   }, [router.query.id])
 
   const getLaunch = async (launchID) => {
+    setLoading(true);
     const client = new ApolloClient({
       uri: 'https://api.spacex.land/graphql/',
       cache: new InMemoryCache()
@@ -66,6 +69,7 @@ const Launch = () => {
 
       if (data.launch) {
         setLaunch(JSON.stringify(data.launch))
+        setLoading(false);
       }
     } catch (e) {
       // catch any errors from Apollo Error.
@@ -83,7 +87,8 @@ const Launch = () => {
       </Head>
 
       <main className={styles.main}>
-        <LaunchDetails data={launch} />
+        {loading && <Spin indicator={antIcon} />}
+        {!loading && <LaunchDetails data={launch} />}
       </main>
     </div>
   );
