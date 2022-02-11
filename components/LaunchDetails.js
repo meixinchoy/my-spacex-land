@@ -76,7 +76,7 @@ const LaunchDetails = ({ data }) => {
         <div className="launchDetails">
             <h1>{title}</h1>
             <Carousel autoplay className="carousel" style={{
-                width: 500, height: 300, marginTop: 10, marginBottom: 15
+                width: 500, height: 340
             }}>
                 {images}
                 {missionPatch}
