@@ -1,7 +1,6 @@
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import { useRouter } from 'next/router';
 import Head from 'next/head'
-import styles from '../../styles/Home.module.css'
 import { useState, useEffect } from 'react';
 import LaunchDetails from '../../components/LaunchDetails';
 import { Spin } from 'antd';
@@ -86,7 +85,7 @@ const Launch = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
+      <main className="main">
         {loading && <Spin indicator={antIcon} />}
         {!loading && <LaunchDetails data={launch} />}
       </main>

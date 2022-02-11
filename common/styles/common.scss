@@ -1,3 +1,11 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  background-image: url("../../public/light-wallpaper.jpeg");
+  background-size: cover;
+  background-attachment: fixed;
+}
 
 .footer {
   max-height: 11vh;

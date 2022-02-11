@@ -2,8 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import { Carousel } from 'antd';
 import Image from 'next/image';
-import "antd/dist/antd.css";
-import "../styles/Components.module.css"
 
 const LaunchDetails = ({ data }) => {
     const [missionPatch, setMP] = useState(null);

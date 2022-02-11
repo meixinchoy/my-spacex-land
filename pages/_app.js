@@ -1,4 +1,6 @@
-import '../styles/globals.css'
+import '../common/styles/typography.scss'
+import '../common/styles/common.scss'
+import '../common/styles/main.scss'
 import {layouts} from '../layouts'
 
 function MyApp({ Component, pageProps }) {
