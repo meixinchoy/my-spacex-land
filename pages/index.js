@@ -1,5 +1,4 @@
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
-import { useState, useEffect } from 'react';
 import Link from 'next/link'
 import Head from 'next/head'
 
