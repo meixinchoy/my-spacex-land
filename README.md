@@ -4,7 +4,7 @@
 
 This is a website that shows SpaceX's latest launches and it's details. 
 
-The website is built using Next js, Apollo Client, Graph QL, and styled using Ant design. The website is deployed using Vercel and the data is retrieved from [SpaceX's API](https://github.com/SpaceXLand). 
+A project for me to experiment using Next js, Apollo Client, Graph QL, and it is styled using Ant design. The website is deployed using Vercel and the data is retrieved from [SpaceX's API](https://github.com/SpaceXLand). 
 
 
 ## Learn More
